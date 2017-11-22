@@ -6,11 +6,11 @@ defmodule Dobbybot.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+    
+    slack_token = Application.get_env(:dobbybot, Dobbybot.Slack)[:token]
     # List all child processes to be supervised
-    children = [
-      # Starts a worker by calling: Dobbybot.Worker.start_link(arg)
-      # {Dobbybot.Worker, arg},
-    ]
+    children = [worker(Slack.Bot, [Dobbybot.Slack, [], slack_token ])]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
