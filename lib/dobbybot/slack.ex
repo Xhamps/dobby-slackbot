@@ -1,6 +1,8 @@
 defmodule Dobbybot.Slack do
   use Slack
 
+  @moduledoc false
+
   def handle_connect(slack, state) do
     IO.puts "Connected as #{slack.me.name}"
     {:ok, state}
