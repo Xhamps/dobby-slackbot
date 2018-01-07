@@ -1,4 +1,4 @@
-# DobbyBot
+# DobbyBot &middot; [![CircleCI](https://circleci.com/gh/Xhamps/dobby-slackbot/tree/master.svg?style=svg)](https://circleci.com/gh/Xhamps/dobby-slackbot/tree/master)
 
 <p align="center">
   <img src="https://s3-sa-east-1.amazonaws.com/dobbybot/dobby.jpg">
