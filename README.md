@@ -1,4 +1,4 @@
-# DobbyBot &middot; [![CircleCI](https://circleci.com/gh/Xhamps/dobby-slackbot/tree/master.svg?style=svg)](https://circleci.com/gh/Xhamps/dobby-slackbot/tree/master)
+# DobbyBot &middot; [![CircleCI](https://circleci.com/gh/Xhamps/dobby-slackbot/tree/master.svg?style=svg)](https://circleci.com/gh/Xhamps/dobby-slackbot/tree/master) [![Coverage Status](https://coveralls.io/repos/github/Xhamps/dobby-slackbot/badge.svg?branch=master)](https://coveralls.io/github/Xhamps/dobby-slackbot?branch=master)
 
 <p align="center">
   <img src="https://s3-sa-east-1.amazonaws.com/dobbybot/dobby.jpg">

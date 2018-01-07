@@ -23,3 +23,4 @@ jobs:
       - run: mix deps.get
       - run: mix dogma
       - run: mix test
+      - run: mix coveralls.circle
