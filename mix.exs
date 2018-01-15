@@ -16,11 +16,14 @@ defmodule Dobbybot.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:httpoison, :timex],
+      applications: applications(Mix.env),
       extra_applications: [:logger],
       mod: {Dobbybot.Application, []}
     ]
   end
+
+  defp applications(:dev), do: applications(:all) ++ [:remix]
+  defp applications(_all), do: [:httpoison, :timex]
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
@@ -28,10 +31,12 @@ defmodule Dobbybot.Mixfile do
       {:timex, "~> 3.1"},
       {:joken, "~> 1.1"},
       {:httpoison, "~> 0.13"},
+      {:excoveralls, "~> 0.4"},
+      {:slack, "~> 0.12.0"},
       {:dogma, "~> 0.1", only:  [:dev, :test], runtime: false},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.4"},
-      {:slack, "~> 0.12.0"}
+      {:remix, "~> 0.0.1", only: :dev},
+      {:mock, "~> 0.3.0", only: :test}
     ]
   end
 end

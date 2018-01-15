@@ -22,19 +22,19 @@ defmodule  Dobbybot.Github.Server do
   end
 
   def handle_call(:get_repos, _from, state) do
-    get!("#{site()}/orgs/#{org()}/repos", state)
+    get!("orgs/#{org()}/repos", state)
   end
 
   def handle_call({:get_pulls, repo }, _from, state) do
-    get!("#{site()}/repos/#{org()}/#{repo}2312/pulls", state)
+    get!("repos/#{org()}/#{repo}/pulls", state)
   end
 
   def handle_call({:get_reviews, repo, pull}, _from, state) do
-    get!("#{site()}/repos/#{org()}/#{repo}/pulls/#{pull}/reviews", state)
+    get!("repos/#{org()}/#{repo}/pulls/#{pull}/reviews", state)
   end
 
-  defp get!(url, state) do
-    url
+  defp get!(uri, state) do
+    "#{url()}/#{uri}"
     |> HTTPoison.get!([
       {"Authorization", "Bearer #{token()}"},
       {"Accept", @installation_content_type}
@@ -48,8 +48,8 @@ defmodule  Dobbybot.Github.Server do
     end
   end
 
-  defp site do
-    Application.get_env(:dobbybot, :site_github)
+  defp url do
+    Application.get_env(:dobbybot, :site_github, "https://api.github.com")
   end
 
   defp token do
@@ -57,7 +57,7 @@ defmodule  Dobbybot.Github.Server do
   end
 
   defp org do
-    Application.get_env(:dobbybot, :org_github)
+    Application.get_env(:dobbybot, :org_github, "elixir-lang")
   end
 
 end
