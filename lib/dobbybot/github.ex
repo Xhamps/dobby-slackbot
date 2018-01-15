@@ -4,11 +4,6 @@ defmodule Dobbybot.Github do
 
   @moduledoc false
 
-  def main do
-    get_repos()
-    |> Enum.filter(&has_pulls/1)
-  end
-
   def get_repos do
     Repo.get_all
     |> Enum.map(fn (repo) ->
@@ -16,6 +11,7 @@ defmodule Dobbybot.Github do
       |> get_pulls()
       |> Repo.add_pulls(repo)
     end)
+    |> Enum.filter(&has_pulls/1)
   end
 
   def get_pulls(%{name: name}) do

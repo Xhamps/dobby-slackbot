@@ -3,13 +3,13 @@ defmodule Dobbybot.Github.RepoTest do
 
   alias Dobbybot.Github.Repo
 
-  test "should return all repos" do
+  test "return all repos" do
     repos = Repo.get_all()
 
     assert Enum.count(repos) == 2
   end
 
-  test "should set pull into repos struct" do
+  test "set pull into repos struct" do
     repo = %{}
     pulls = [%{id: 1}, %{id: 2}]
 
