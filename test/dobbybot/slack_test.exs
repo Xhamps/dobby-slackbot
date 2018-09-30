@@ -2,7 +2,6 @@ defmodule Dobbybot.SlackTest do
   use ExUnit.Case
 
   alias Dobbybot.Slack, as: DSlack
-  alias Dobbybot.Slack.Responses.PRs
   alias Slack.Sends
 
   import Mock
@@ -16,41 +15,6 @@ defmodule Dobbybot.SlackTest do
     end)
 
     assert log == "Connected as Dobbybot\n"
-  end
-
-  test "send the message when the message was sended is ping" do
-    state = %{state: :ok}
-    slack = %{me: %{id: 1, name: "Dobbybot"}}
-    message = %{
-      type: "message",
-      user: "123456",
-      channel: "slack",
-      text: "<@1> ping"
-    }
-    mock = %{
-      message: "<@#{message.user}> pong",
-      channel: message.channel,
-      slack: slack
-    }
-
-    with_mock Sends, [send_message: & send_message_pong(&1, &2, &3, mock)] do
-      assert {:ok, state} == DSlack.handle_event(message, slack, state)
-    end
-  end
-
-  test "parse and send the message when the message was sended is prs" do
-    state = %{state: :ok}
-    slack = %{me: %{id: 1, name: "Dobbybot"}}
-    message = %{
-      type: "message",
-      user: "123456",
-      channle: "slack",
-      text: "<@1> prs"
-    }
-
-    with_mock PRs, [run: & prs_run(&1, message)] do
-      assert {:ok, state} == DSlack.handle_event(message, slack, state)
-    end
   end
 
   test "return tuple of ok when the type is not 'message'" do

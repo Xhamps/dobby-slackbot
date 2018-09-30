@@ -18,4 +18,12 @@ defmodule Dobbybot.Slack.MessageTest do
     attachments = [%{id: 1}, %{id: 2}]
     Message.post_attachments("Message", attachments, "channel", ChatMock)
   end
+
+  test "get command" do
+    assert Message.get_command("<@1> command", %{me: %{id: 1}}) == "command"
+  end
+
+  test "return empty value when the message not to bot" do
+    assert Message.get_command("<@2> command", %{me: %{id: 1}}) == ""
+  end
 end

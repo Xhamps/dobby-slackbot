@@ -1,4 +1,4 @@
 use Mix.Config
 
 config :dobbybot, Dobbybot.Slack, token: "XXXX"
-config :dobbybot, :server_github, Dobbybot.Github.ServerMock
+config :dobbybot, :server_github, Dobbybot.Plugins.Github.ServerMock
