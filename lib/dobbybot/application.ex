@@ -11,7 +11,7 @@ defmodule Dobbybot.Application do
     # List all child processes to be supervised
     children = [
       worker(Application.get_env(:dobbybot, :server_github), [])
-    ] ++ workers(Mix.env)
+    ] ++ workers(Application.get_env(:dobbybot, :env))
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

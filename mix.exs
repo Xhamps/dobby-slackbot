@@ -33,6 +33,7 @@ defmodule Dobbybot.Mixfile do
       {:httpoison, "~> 0.13"},
       {:excoveralls, "~> 0.4"},
       {:slack, "~> 0.12.0"},
+      {:distillery, "~> 2.0"},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       {:remix, "~> 0.0.1", only: :dev},
       {:mock, "~> 0.3.0", only: :test}
