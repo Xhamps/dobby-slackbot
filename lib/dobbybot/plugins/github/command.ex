@@ -29,14 +29,24 @@ defmodule Dobbybot.Plugins.Github.Command do
     |> RepoServer.parse()
     |> Enum.filter(fn repo -> length(repo.pullRequests) > 0 end)
     |> Repos.parse()
+    |> case do
+         [] -> %{ text: "Sorry, your repositories don't have Pull Request"}
+         data -> data
+       end
+
   end
 
   def parse_repo({:error, _error}, repo), do: %{ text: "Dobby will have to punish. Dobby didn't found the repository #{repo}" }
-  def parse_repo({:ok, data}, repo) do
+  def parse_repo({:ok, data}, _repo) do
     data
     |> RepoServer.parse()
     |> Enum.filter(fn repo -> length(repo.pullRequests) > 0 end)
     |> Repos.parse()
+    |> case do
+         [] -> %{ text: "Sorry, your repository don't have Pull Request"}
+         data -> data
+       end
+
   end
 
 end
